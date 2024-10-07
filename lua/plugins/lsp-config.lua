@@ -104,6 +104,9 @@ return {
 					vim.keymap.set("n", "<leader>bc", ":!cargo clean<CR>", {})
 				end,
 			})
+			lspconfig.zls.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 			})
