@@ -7,7 +7,7 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 -- shell
-vim.opt.shell = "powershell"
+vim.opt.shell = "pwsh"
 vim.opt.shellcmdflag = "-c"
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
