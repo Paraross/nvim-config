@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "zls", "clangd", "asm_lsp" },
+				ensure_installed = { "lua_ls", "rust_analyzer", "zls", "clangd" },
 			})
 		end,
 	},
@@ -110,9 +110,6 @@ return {
 				capabilities = capabilities,
 			})
 			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.asm_lsp.setup({
 				capabilities = capabilities,
 			})
 		end,
