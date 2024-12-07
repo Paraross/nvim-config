@@ -9,7 +9,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "zls", "clangd" },
+				ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "zls", "clangd" },
 			})
 		end,
 	},
@@ -105,6 +105,9 @@ return {
 					vim.keymap.set("n", "<leader>bt", ":!cargo test<CR>", {})
 					vim.keymap.set("n", "<leader>bc", ":!cargo clean<CR>", {})
 				end,
+			})
+			lspconfig.gopls.setup({
+				capabilities = capabilities,
 			})
 			lspconfig.zls.setup({
 				capabilities = capabilities,
