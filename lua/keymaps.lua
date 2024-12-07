@@ -2,9 +2,9 @@ vim.g.mapleader = " "
 -- tabs
 vim.keymap.set("n", "<leader>tn", vim.cmd.tabnew, {})
 vim.keymap.set("n", "<leader>tq", vim.cmd.tabclose, {})
-vim.keymap.set("n", "<leader>tt", ":tab split<CR>", {})
-vim.keymap.set("n", "<C-S-PageUp>", ":tabmove -1<CR>", {})
-vim.keymap.set("n", "<C-S-PageDown>", ":tabmove +1<CR>", {})
+vim.keymap.set("n", "<leader>tt", "<CMD>tab split<CR>", {})
+vim.keymap.set("n", "<C-S-PageUp>", "<CMD>tabmove -1<CR>", {})
+vim.keymap.set("n", "<C-S-PageDown>", "<CMD>tabmove +1<CR>", {})
 -- highlighting
 vim.keymap.set("n", "<leader>nh", vim.cmd.nohlsearch, {})
 -- missclick prevention

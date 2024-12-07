@@ -8,6 +8,6 @@ return {
 		"3rd/image.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "<C-n>", ":Neotree reveal left<CR>", {})
+		vim.keymap.set("n", "<C-n>", "<CMD>Neotree reveal left<CR>", {})
 	end,
 }
