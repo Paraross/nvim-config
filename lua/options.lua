@@ -17,3 +17,8 @@ vim.opt.scrolloff = 5
 vim.opt.signcolumn = "yes"
 vim.opt.showtabline = 2
 vim.opt.gdefault = true
+
+vim.diagnostic.config({
+	virtual_text = { current_line = false },
+	virtual_lines = false,
+})

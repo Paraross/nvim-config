@@ -7,6 +7,19 @@ vim.keymap.set("n", "<C-S-PageUp>", "<CMD>tabmove -1<CR>", {})
 vim.keymap.set("n", "<C-S-PageDown>", "<CMD>tabmove +1<CR>", {})
 -- highlighting
 vim.keymap.set("n", "<leader>nh", vim.cmd.nohlsearch, {})
+-- diagnostics
+vim.keymap.set("n", "<leader>dc", function()
+	local current_virtual_text = vim.diagnostic.config().virtual_text.current_line
+	vim.diagnostic.config({
+		virtual_text = { current_line = not current_virtual_text },
+	})
+end)
+vim.keymap.set("n", "<leader>dv", function()
+	local current_virtual_lines = vim.diagnostic.config().virtual_lines
+	vim.diagnostic.config({
+		virtual_lines = not current_virtual_lines,
+	})
+end)
 -- missclick prevention
 vim.keymap.set({ "n", "i", "v" }, "<C-m>", "", {})
 vim.keymap.set({ "n", "i", "v" }, "<C-f>", "", {})
