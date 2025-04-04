@@ -5,6 +5,7 @@ return {
 		require("here-term").setup({
 			startup_command = "",
 			mappings = {
+				enable = true,
 				toggle = "<C-;>",
 				kill = "<C-A-;>",
 			},
