@@ -115,6 +115,18 @@ return {
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 			})
+			lspconfig.dartls.setup({
+				capabilities = capabilities,
+				on_init = function()
+					vim.opt.tabstop = 2
+					vim.opt.softtabstop = 2
+					-- TODO: keymaps for FlutterQuit and maybe something else
+					vim.keymap.set("n", "<leader>br", function()
+						vim.cmd.tabnew()
+						vim.cmd.FlutterRun("-d windows")
+					end)
+				end,
+			})
 		end,
 	},
 }
