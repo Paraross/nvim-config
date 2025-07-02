@@ -28,9 +28,8 @@ return {
 					end
 
 					local builtin = require("telescope.builtin")
-					-- map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
-					map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-					map("gr", builtin.lsp_references, "[G]oto [R]eferences")
+					map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
+					map("<leader>gr", builtin.lsp_references, "[G]oto [R]eferences")
 					map("gI", builtin.lsp_implementations, "[G]oto [I]mplementation")
 					map("<leader>D", builtin.lsp_type_definitions, "Type [D]efinition")
 					map("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
