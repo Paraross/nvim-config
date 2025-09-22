@@ -19,4 +19,11 @@ local opts = {}
 require("options")
 require("keymaps")
 
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		-- vim.highlight.on_yank()
+		vim.highlight.on_yank({ higroup = "Search", timeout = 350 })
+	end,
+})
+
 require("lazy").setup("plugins", opts)
