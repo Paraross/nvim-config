@@ -8,7 +8,7 @@ return {
 			modifiers = nil,
 			highlight_substituted_text = {
 				enabled = true,
-				timer = 500,
+				timer = 350,
 			},
 			range = {
 				prefix = "s",
