@@ -1,12 +1,9 @@
 local function find_godot_project_root()
 	local cwd = vim.fn.getcwd()
-	local search_paths = { "", "/.." }
 
-	for _, relative_path in ipairs(search_paths) do
-		local project_file = cwd .. relative_path .. "/project.godot"
-		if vim.uv.fs_stat(project_file) then
-			return cwd .. relative_path
-		end
+	local project_file = cwd .. "/project.godot"
+	if vim.uv.fs_stat(project_file) then
+		return cwd
 	end
 
 	return nil
