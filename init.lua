@@ -27,3 +27,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 require("lazy").setup("plugins", opts)
+
+require("godot")
