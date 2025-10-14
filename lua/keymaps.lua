@@ -1,4 +1,5 @@
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 -- tabs
 vim.keymap.set("n", "<leader>tn", vim.cmd.tabnew, {})
 vim.keymap.set("n", "<leader>tq", vim.cmd.tabclose, {})
