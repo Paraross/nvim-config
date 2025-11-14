@@ -77,11 +77,14 @@ return {
 					vim.keymap.set("n", "<leader>bt", "<CMD>!go test<CR>", {})
 				end,
 			})
-			lspconfig.zls.setup({
-				capabilities = capabilities,
-			})
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
+			})
+			lspconfig.wgsl_analyzer.setup({
+				capabilities = capabilities,
+				on_attach = function()
+					vim.opt_local.commentstring = "// %s"
+				end,
 			})
 		end,
 	},
