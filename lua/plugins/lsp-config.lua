@@ -49,42 +49,11 @@ return {
 				end,
 			})
 
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			local lspconfig = require("lspconfig")
-
-			-- TODO: tabs instead of spaces
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-				on_init = function()
-					vim.keymap.set("n", "<leader>bb", "<CMD>!cargo build<CR>", {})
-					vim.keymap.set("n", "<leader>br", "<CMD>!cargo run<CR>", {})
-					vim.keymap.set("n", "<leader>Bb", "<CMD>!cargo build --release<CR>", {})
-					vim.keymap.set("n", "<leader>Br", "<CMD>!cargo run --release<CR>", {})
-					vim.keymap.set("n", "<leader>bl", "<CMD>!cargo clippy<CR>", {})
-					vim.keymap.set("n", "<leader>bt", "<CMD>!cargo test<CR>", {})
-					vim.keymap.set("n", "<leader>bc", "<CMD>!cargo clean<CR>", {})
-				end,
-			})
-			lspconfig.gopls.setup({
-				capabilities = capabilities,
-				on_init = function()
-					vim.keymap.set("n", "<leader>bb", "<CMD>!go build<CR>", {})
-					vim.keymap.set("n", "<leader>br", "<CMD>!go run .<CR>", {})
-					vim.keymap.set("n", "<leader>bt", "<CMD>!go test<CR>", {})
-				end,
-			})
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.wgsl_analyzer.setup({
-				capabilities = capabilities,
-				on_attach = function()
-					vim.opt_local.commentstring = "// %s"
-				end,
+			vim.lsp.enable({
+				"lua_ls",
+				"rust_analyzer",
+				"clangd",
+				"wgsl_analyzer",
 			})
 		end,
 	},

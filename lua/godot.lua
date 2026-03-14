@@ -21,10 +21,7 @@ local function start_godot_server_if_needed()
 
 	if godot_project_path and not is_server_running(godot_project_path) then
 		vim.fn.serverstart(pipe_path)
-
-		local lspconfig = require("lspconfig")
-		lspconfig.gdscript.setup({})
-
+		vim.lsp.enable("gdscript")
 		return true
 	end
 
