@@ -6,6 +6,9 @@ vim.opt.expandtab = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 0
+-- wrapping
+vim.opt.linebreak = true
+vim.opt.breakindent = true
 -- shell
 vim.opt.shell = "nu"
 vim.opt.shellcmdflag = "-c"
