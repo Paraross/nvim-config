@@ -31,3 +31,31 @@ vim.keymap.set({ "n", "i", "v" }, "<C-Home>", "", {})
 vim.keymap.set({ "n", "i", "v" }, "<C-End>", "", {})
 vim.keymap.set({ "n", "i", "v" }, "<PageUp>", "", {})
 vim.keymap.set({ "n", "i", "v" }, "<PageDown>", "", {})
+-- inserting a semicolon before a closing bracket puts it after the bracket if at the end of the line
+SemiAfterBracket = true
+
+vim.keymap.set("i", ";", function()
+	if not SemiAfterBracket then
+		return ";"
+	end
+
+	local col = vim.fn.col(".")
+	local line = vim.fn.getline(".")
+	local line_end = line:sub(col)
+
+	-- if line_end:match("[%)%]%}]$") ~= nil then
+	if line_end == ")" or line_end == "]" or line_end == "}" then
+		return "<Right>;"
+	end
+
+	return ";"
+end, { expr = true, noremap = true })
+
+vim.keymap.set("n", "<leader>;", function()
+	SemiAfterBracket = not SemiAfterBracket
+	if SemiAfterBracket then
+		vim.print("Semicolon after brackets ON")
+	else
+		vim.print("Semicolon after brackets OFF")
+	end
+end, {})
