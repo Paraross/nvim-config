@@ -21,6 +21,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.showtabline = 2
 vim.opt.gdefault = true
 vim.opt.winborder = "single"
+vim.opt.fillchars = { eob = " " }
 
 vim.diagnostic.config({
 	virtual_text = { current_line = false },
