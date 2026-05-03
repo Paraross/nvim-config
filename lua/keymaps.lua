@@ -44,7 +44,7 @@ vim.keymap.set("i", ";", function()
 	local line_end = line:sub(col)
 
 	-- if line_end:match("[%)%]%}]$") ~= nil then
-	if line_end == ")" or line_end == "]" or line_end == "}" then
+	if line_end == ")" or line_end == "}" then
 		return "<Right>;"
 	end
 
@@ -59,14 +59,3 @@ vim.keymap.set("n", "<leader>;", function()
 		vim.print("Semicolon after brackets OFF")
 	end
 end, {})
--- go before the semicolon with A if line ends with a semicolon
-vim.keymap.set("n", "A", function()
-	local line = vim.fn.getline(".")
-	local last_char = line:sub(-1)
-
-	if last_char == ";" then
-		return "$i"
-	end
-
-	return "A"
-end, { expr = true, noremap = true })
