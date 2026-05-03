@@ -9,7 +9,7 @@ local function find_godot_project_root()
 	return nil
 end
 
-local pipe_path = "\\\\.\\pipe\\nvim-pipe-1234"
+local pipe_path = [[\\.\pipe\nvim-pipe-1234]]
 
 local function is_server_running(project_path)
 	local server_pipe = project_path .. pipe_path
