@@ -1,1 +1,2 @@
+c compiler for treesitter
 ripgrep needed https://github.com/BurntSushi/ripgrep?tab=readme-ov-file#installation
