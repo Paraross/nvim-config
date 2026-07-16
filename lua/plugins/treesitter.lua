@@ -23,7 +23,13 @@ return {
 			vim.g.no_plugin_maps = true
 		end,
 		config = function()
-			require("nvim-treesitter-textobjects").setup({
+			local ts_name = "nvim-treesitter-textobjects"
+			local ts = require(ts_name)
+			local ts_select = require(ts_name .. ".select")
+			local ts_move = require(ts_name .. ".move")
+			local ts_repeat_move = require(ts_name .. ".repeatable_move")
+
+			ts.setup({
 				select = {
 					lookahead = true,
 					include_surrounding_whitespace = false,
@@ -38,9 +44,6 @@ return {
 			})
 
 			-- mappings
-
-			local ts_select = require("nvim-treesitter-textobjects.select")
-			local ts_move = require("nvim-treesitter-textobjects.move")
 
 			local select_modes = { "x", "o" }
 			local move_modes = { "n", "x", "o" }
@@ -97,8 +100,6 @@ return {
 			set_textobject_mappings("a/", "@comment.outer")
 
 			-- repeat move
-
-			local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
 
 			vim.keymap.set(move_modes, ";", ts_repeat_move.repeat_last_move)
 			vim.keymap.set(move_modes, ",", ts_repeat_move.repeat_last_move_opposite)
