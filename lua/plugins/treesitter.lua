@@ -4,14 +4,24 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			local languages = { "lua", "rust", "json", "markdown", "markdown_inline" }
+			-- local languages = {}
+
+			-- local i = 1
+			-- local parser_dir = vim.fn.stdpath("data") .. "/site/parser"
+			-- for name, type in vim.fs.dir(parser_dir) do
+			-- 	if type == "file" and name:sub(-3) == ".so" then
+			-- 		languages[i] = name:gsub("%.so$", "")
+			-- 		i = i + 1
+			-- 	end
+			-- end
+
+			local languages = { "lua", "rust", "html", "css", "json", "markdown", "markdown_inline" }
 
 			require("nvim-treesitter").install(languages)
 
 			vim.api.nvim_create_autocmd("FileType", {
-				pattern = languages,
-				callback = function()
-					vim.treesitter.start()
+				callback = function(args)
+					pcall(vim.treesitter.start, args.buf)
 				end,
 			})
 		end,
