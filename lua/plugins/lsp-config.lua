@@ -43,6 +43,16 @@ local function configure_rust_analyzer()
 		on_attach = function(client, bufnr)
 			rust_analyzer_on_attach(client, bufnr)
 		end,
+		cargo = {
+			features = "all",
+		},
+		procMacro = {
+			ignored = {
+				leptos_macro = {
+					"server",
+				},
+			},
+		},
 	}
 end
 
