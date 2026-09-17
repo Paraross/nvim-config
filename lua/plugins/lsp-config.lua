@@ -82,13 +82,6 @@ return {
 
 			configure_lua_ls()
 			configure_rust_analyzer()
-
-			vim.lsp.enable({
-				"lua_ls",
-				"rust_analyzer",
-				"clangd",
-				"wgsl_analyzer",
-			})
 		end,
 	},
 }
