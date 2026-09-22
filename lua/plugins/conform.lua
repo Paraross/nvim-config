@@ -25,6 +25,7 @@ return {
 				lua = { "stylua" },
 				typescript = { "prettier" },
 				html = { "prettier" },
+				htmlangular = { "prettier" },
 				css = { "prettier" },
 				scss = { "prettier" },
 			},
