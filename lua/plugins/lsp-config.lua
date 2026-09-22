@@ -29,6 +29,26 @@ local function configure_lsp_attach()
 	})
 end
 
+local function configure_web()
+	vim.lsp.config["html"] = {
+		on_attach = function(_, bufnr)
+			vim.bo[bufnr].tabstop = 2
+		end,
+	}
+
+	vim.lsp.config["tailwindcss"] = {
+		on_attach = function(_, bufnr)
+			vim.bo[bufnr].tabstop = 2
+		end,
+	}
+
+	vim.lsp.config["ts_ls"] = {
+		on_attach = function(_, bufnr)
+			vim.bo[bufnr].tabstop = 2
+		end,
+	}
+end
+
 local function configure_lua_ls()
 	vim.lsp.config["lua_ls"] = {
 		on_attach = function(_, bufnr)
@@ -80,6 +100,7 @@ return {
 		config = function()
 			configure_lsp_attach()
 
+			configure_web()
 			configure_lua_ls()
 			configure_rust_analyzer()
 		end,
