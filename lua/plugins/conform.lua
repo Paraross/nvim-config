@@ -23,6 +23,10 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
+				typescript = { "prettier" },
+				html = { "prettier" },
+				css = { "prettier" },
+				scss = { "prettier" },
 			},
 		},
 	},
