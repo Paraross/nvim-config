@@ -31,6 +31,7 @@ vim.keymap.set({ "n", "i", "v" }, "<C-Home>", "", {})
 vim.keymap.set({ "n", "i", "v" }, "<C-End>", "", {})
 vim.keymap.set({ "n", "i", "v" }, "<PageUp>", "", {})
 vim.keymap.set({ "n", "i", "v" }, "<PageDown>", "", {})
+
 -- inserting a semicolon before a closing bracket puts it after the bracket if at the end of the line
 SemiAfterBracket = true
 
