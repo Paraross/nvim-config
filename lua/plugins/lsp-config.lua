@@ -1,30 +1,63 @@
+local function map_lsp_action(keys, func, event)
+	vim.keymap.set("n", keys, func, { buffer = event.buf })
+end
+
+local function map_lsp_actions(event)
+	local map = function(keys, func)
+		map_lsp_action(keys, func, event)
+	end
+
+	local builtin = require("telescope.builtin")
+
+	map("gd", builtin.lsp_definitions)
+	map("grr", builtin.lsp_references)
+	map("gri", builtin.lsp_implementations)
+	map("grt", builtin.lsp_type_definitions)
+	map("<leader>ds", builtin.lsp_document_symbols)
+	map("<leader>ws", builtin.lsp_dynamic_workspace_symbols)
+	map("gD", vim.lsp.buf.declaration)
+	map("<leader>h", vim.lsp.buf.document_highlight)
+	map("<leader>H", vim.lsp.buf.clear_references)
+end
+
+local function configure_ts_ls_when_angularls_attached(client, event)
+	-- disable ts_ls renaming, otherwise rename prompt appears twice
+	if client.name == "ts_ls" then
+		local angularls = vim.lsp.get_clients({ name = "angularls", bufnr = event.buf })[1]
+		if angularls then
+			client.server_capabilities.renameProvider = false
+		end
+	end
+
+	if client.name == "angularls" then
+		local ts_ls = vim.lsp.get_clients({ name = "ts_ls", bufnr = event.buf })[1]
+		if ts_ls then
+			ts_ls.server_capabilities.renameProvider = false
+		end
+	end
+end
+
+local function configure_inlay_hints(client, event)
+	if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+		map_lsp_action("<leader>th", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+		end, event)
+	end
+end
+
 local function configure_lsp_attach()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 		callback = function(event)
-			local map = function(keys, func, desc)
-				vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-			end
-
-			local builtin = require("telescope.builtin")
-			map("gd", builtin.lsp_definitions, "[G]oto [D]efinition")
-			map("grr", builtin.lsp_references, "[G]oto [R]eferences")
-			map("gri", builtin.lsp_implementations, "[G]oto [I]mplementation")
-			map("grt", builtin.lsp_type_definitions, "Type [D]efinition")
-			map("<leader>ds", builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
-			map("<leader>ws", builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
-			map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-			map("<leader>h", vim.lsp.buf.document_highlight, "")
-			map("<leader>H", vim.lsp.buf.clear_references, "")
+			map_lsp_actions(event)
 
 			local client = vim.lsp.get_client_by_id(event.data.client_id)
-
-			-- The following autocommand is used to enable inlay hints
-			if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-				map("<leader>th", function()
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-				end, "[T]oggle Inlay [H]ints")
+			if not client then
+				return
 			end
+
+			configure_ts_ls_when_angularls_attached(client, event)
+			configure_inlay_hints(client, event)
 		end,
 	})
 end
