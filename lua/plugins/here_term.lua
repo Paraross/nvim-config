@@ -3,7 +3,6 @@ return {
 	opts = {},
 	config = function()
 		require("here-term").setup({
-			-- startup_command = "",
 			mappings = {
 				enable = true,
 				toggle = "<C-;>",

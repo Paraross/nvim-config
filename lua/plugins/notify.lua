@@ -5,9 +5,6 @@ return {
 		notify.setup({
 			background_colour = "#000000",
 		})
-		-- notify.setup({
-		-- 	background_colour = "#121212",
-		-- })
 		vim.notify = notify
 	end,
 }
