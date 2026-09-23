@@ -23,6 +23,7 @@ vim.opt.gdefault = true
 vim.opt.winborder = "single"
 vim.opt.fillchars = { eob = " " }
 vim.opt.list = true
+vim.opt.updatetime = 500
 
 vim.diagnostic.config({
 	virtual_text = { current_line = false },

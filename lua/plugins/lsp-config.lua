@@ -16,8 +16,6 @@ local function map_lsp_actions(event)
 	map("<leader>ds", builtin.lsp_document_symbols)
 	map("<leader>ws", builtin.lsp_dynamic_workspace_symbols)
 	map("gD", vim.lsp.buf.declaration)
-	map("<leader>h", vim.lsp.buf.document_highlight)
-	map("<leader>H", vim.lsp.buf.clear_references)
 end
 
 local function configure_ts_ls_when_angularls_attached(client, event)
@@ -45,6 +43,28 @@ local function configure_inlay_hints(client, event)
 	end
 end
 
+local function configure_symbol_highlight_under_cursor(client, event)
+	-- if not client:supports_method("textDocument/documentHighlight") then
+	if not client.server_capabilities.documentHighlightProvider then
+		return
+	end
+
+	local group = vim.api.nvim_create_augroup("highlight_symbol", { clear = false })
+
+	vim.api.nvim_clear_autocmds({ buffer = event.buf, group = group })
+
+	vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+		group = group,
+		buffer = event.buf,
+		callback = vim.lsp.buf.document_highlight,
+	})
+	vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+		group = group,
+		buffer = event.buf,
+		callback = vim.lsp.buf.clear_references,
+	})
+end
+
 local function configure_lsp_attach()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -58,6 +78,7 @@ local function configure_lsp_attach()
 
 			configure_ts_ls_when_angularls_attached(client, event)
 			configure_inlay_hints(client, event)
+			configure_symbol_highlight_under_cursor(client, event)
 		end,
 	})
 end
