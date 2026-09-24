@@ -44,12 +44,11 @@ local function configure_inlay_hints(client, event)
 end
 
 local function configure_symbol_highlight_under_cursor(client, event)
-	-- if not client:supports_method("textDocument/documentHighlight") then
 	if not client.server_capabilities.documentHighlightProvider then
 		return
 	end
 
-	local group = vim.api.nvim_create_augroup("highlight_symbol", { clear = false })
+	local group = vim.api.nvim_create_augroup("highlight-symbol", { clear = false })
 
 	vim.api.nvim_clear_autocmds({ buffer = event.buf, group = group })
 
@@ -88,6 +87,7 @@ local function configure_web()
 		on_attach = function(_, bufnr)
 			vim.bo[bufnr].tabstop = 2
 		end,
+		filetypes = { "html", "htmlangular" },
 	}
 
 	vim.lsp.config["tailwindcss"] = {
@@ -99,6 +99,14 @@ local function configure_web()
 	vim.lsp.config["ts_ls"] = {
 		on_attach = function(_, bufnr)
 			vim.bo[bufnr].tabstop = 2
+		end,
+	}
+
+	vim.lsp.config["angularls"] = {
+		on_attach = function(_, bufnr)
+			if vim.bo[bufnr].filetype == "html" then
+				vim.bo[bufnr].filetype = "htmlangular"
+			end
 		end,
 	}
 end
