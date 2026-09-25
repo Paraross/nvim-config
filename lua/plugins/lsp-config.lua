@@ -90,7 +90,7 @@ local function configure_web()
 		filetypes = { "html", "htmlangular" },
 	}
 
-	vim.lsp.config["tailwindcss"] = {
+	vim.lsp.config["cssls"] = {
 		on_attach = function(_, bufnr)
 			vim.bo[bufnr].tabstop = 2
 		end,
