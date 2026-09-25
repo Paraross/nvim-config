@@ -1,10 +1,11 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
-			local languages = { "lua", "rust", "html", "css", "json", "markdown", "markdown_inline" }
+			local languages = { "lua", "rust", "typescript", "html", "css", "json", "markdown", "markdown_inline" }
 
 			require("nvim-treesitter").install(languages)
 
@@ -18,6 +19,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		branch = "main",
 		init = function()
 			vim.g.no_plugin_maps = true
 		end,
