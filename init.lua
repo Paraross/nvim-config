@@ -21,4 +21,4 @@ require("autocmds")
 
 require("lazy").setup("plugins", opts)
 
-require("godot")
+-- require("godot")
