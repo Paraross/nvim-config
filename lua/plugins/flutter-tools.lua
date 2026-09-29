@@ -2,7 +2,7 @@ return {
 	"nvim-flutter/flutter-tools.nvim",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"stevearc/dressing.nvim", -- optional for vim.ui.select
+		"stevearc/dressing.nvim",
 	},
 	config = function()
 		local on_attach = function()
