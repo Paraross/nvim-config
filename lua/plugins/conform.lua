@@ -28,6 +28,7 @@ return {
 				htmlangular = { "prettier" },
 				css = { "prettier" },
 				scss = { "prettier" },
+				json = { "prettier" },
 			},
 		},
 	},
