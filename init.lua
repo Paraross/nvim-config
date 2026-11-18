@@ -20,5 +20,3 @@ require("keymaps")
 require("autocmds")
 
 require("lazy").setup("plugins", opts)
-
--- require("godot")
